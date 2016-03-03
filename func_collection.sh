@@ -283,12 +283,12 @@ function setup_env {
         cd ${prefix}/bin
         if $MSYS; then
             echo "#!/bin/bash" > cmake_debug
-            echo "cmake .. -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=DEBUG  -G \"MSYS Makefiles\" \$@" >> cmake_debug
+            echo "cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=DEBUG  -G \"MSYS Makefiles\" \$@" >> cmake_debug
             echo "#!/bin/bash" > cmake_release
-            echo "cmake .. -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=RELEASE  -G \"MSYS Makefiles\" \$@" >> cmake_release
+            echo "cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=RELEASE  -G \"MSYS Makefiles\" \$@" >> cmake_release
         else
-            echo "cmake .. -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=DEBUG \$@" > cmake_debug
-            echo "cmake .. -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=RELEASE \$@" > cmake_release
+            echo "cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=DEBUG \$@" > cmake_debug
+            echo "cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=RELEASE \$@" > cmake_release
         fi
         chmod +x cmake_debug
         chmod +x cmake_release
